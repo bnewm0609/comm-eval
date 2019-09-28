@@ -1,0 +1,324 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+<!-- Style -->
+<style>
+div {
+    margin-left: 8px;
+}
+p {
+	font-size: 14pt;
+	color: #000000;
+	font: 17px/1.5em Verdana, Helvetica, Arial, sans-serif; 
+	margin-bottom: 12px;
+}
+
+label {
+	font-size: 12pt;
+	color: #000000;
+	font: 17px/1.5em Verdana, Helvetica, Arial, sans-serif; 
+	margin-bottom: 2px;
+
+}
+
+ul {
+	font-size: 12pt;
+}
+
+i {
+	font-size: 9pt;
+	margin-bottom: 2px;
+}
+span.red {
+	color:  rgb(159, 38, 56);
+}
+
+span.blue {
+	color: rgb(5,29,146);
+}
+
+span.green{
+	color: rgb(4,107,20);
+}
+
+span.pass {
+	color: rgb(38, 159, 141);						 
+}
+
+span.fail {
+	color: rgb(255, 0, 0);
+}
+
+textarea {
+	height:25%; 
+	width: 80%;
+	font-size: 12pt;
+}
+
+textarea.small {
+	height:12.5%; 
+	width: 80%;
+	font-size: 12pt;
+}
+
+li { 
+	font: 16px Arial, Verdana, sans-serif;
+	color: #525252;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	/*font-weight: light;   */
+
+}
+
+h1 {      
+	color: #307bba;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 25px;
+	font-weight: 350;
+	text-align: center ;
+	margin-bottom: 15px; 
+}
+
+h2 {      
+	color: #307bba;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 22px;
+	font-weight: 325;
+	text-align: center ;
+	margin-bottom: 14px; 
+}
+
+
+h3 {      
+	color: #307bba;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	font-weight: 300;
+	text-align: center ;
+	margin-bottom: 12px; 
+}
+
+form {
+	padding:10px;
+	margin:10px;
+}
+
+table {
+    background-color: #fbfbfb;
+    margin: 0 auto;
+}
+</style>
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects">
+    <h1>Describing Colors in Context</h1>
+    <h2>Study Information</h2>
+    <ul>
+        <li>In this study we want to see how people describe colors to others.</li>
+        <li>Your task will be to play a color identification game. In this game: 
+            <ul>
+                <li>Two players, a <span class="blue">listener</span> and a <span class="red">speaker</span> are shown the same three colors.</li>
+                <li>The <span class="red">speaker</span> sees one of the colors as the <span class="green">target</span> and describes this <span class="green">target</span> color to the <span class="blue">listener</span>.</li>
+                <li>At first, the <span class="blue">listener</span> does not know which color is the <span class="green">target</span>, and uses the <span class="red">speaker</span>'s description to try to identify the <span class="green">target</span>.</li>
+            </ul>
+        </li>
+        <li>You will be the <span class="red">speaker</span> for this game. The <span class="green">target</span> color you will be describing is set aside to the left, surrounded by a <b>black box</b>.</li>
+        <li>The <span class="red">speaker</span> and <span class="blue">listener</span> will likely see the colors in different orders, so please do not use spatial descriptions like "left" or "right".</li>
+        <li>There are two parts to this study. In each part, you will play a version of the color description game 5 times. Specific instructions are at the beginning of each part.</li>
+    </ul>
+    
+    <h2>Part 1 of 2</h2>
+
+    <h3>Instructions</h3>
+    <p>
+    Describe the <span class="green">target</span> so that the <span class="blue">listener</span> can pick it out from the other colors. The first game is completed for you as an example.
+    </p>
+
+    <div>
+    <h3>Example</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: #05eaf2; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: #00FF00; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: #0000FF; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Example description: <b>Light blue</b></p>
+
+    <h3>Question 1</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_1_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_1_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_1_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left..." name="description-good-1" required></crowd-input>
+
+    <h3>Question 2</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_2_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_2_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_2_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left..." name="description-good-2" required></crowd-input>
+
+    <h3>Question 3</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_3_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_3_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_3_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left..." name="description-good-3" required></crowd-input>
+
+    <h3>Question 4</h3>
+
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_4_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_4_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_4_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left..." name="description-good-4" required></crowd-input>
+
+    <h3>Question 5</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_5_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_5_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_5_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left..." name="description-good-5" required></crowd-input>
+    </div>
+
+    <h2>Part 2 of 2</h2>
+
+    <h3>Instructions</h3>
+    <p>
+    Now, describe the <span class="green">target</span> color so that the <span class="blue">listener</span> would have a <b>difficult time</b> identifying which color was the <span class="green">target</span>.
+    </p>
+    <p>Your description should <b>accurately</b> describe the <span class="green">target</span> color but should also be <b>ambiguous</b>.</p>
+
+    <div>
+    <h3>Example</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; border:10px solid #000; width: 180px; height: 180px; background-color: #05eaf2; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fff; width: 180px; height: 180px; background-color: #00FF00; display: block;"></td>
+                <td><span style="border:5px solid #fff; width: 180px; height: 180px; background-color: #0000ff; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--<crowd-input label="Describe the color on the left..." name="description-good-1" required></crowd-input>-->
+    <p>Example description: <b>Blue</b> <em>(This is ambiguous because it describes the both the light blue <span class="green">target</span> and the dark blue color.)</em></p>
+
+    <h3>Question 1</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_1_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_1_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_1_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left ambiguously..." name="description-bad-1" required></crowd-input>
+
+    <h3>Question 2</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_2_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_2_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_2_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left ambiguously..." name="description-bad-2" required></crowd-input>
+
+    <h3>Question 3</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_3_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_3_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_3_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left ambiguously..." name="description-bad-3" required></crowd-input>
+
+    <h3>Question 4</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_4_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_4_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_4_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left ambiguously..." name="description-bad-4" required></crowd-input>
+
+    <h3>Question 5</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><span style="border:10px solid #000; width: 180px; height: 180px; background-color: ${color_5_target}; display: block;"></td>
+                <td><span style="width: 180px; height: 180px; display: block;"/></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_5_distr1}; display: block;"></td>
+                <td><span style="border:5px solid #fbfbfb; width: 180px; height: 180px; background-color: ${color_5_distr2}; display: block;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <crowd-input label="Describe the boxed color on the left ambiguously..." name="description-bad-5" required></crowd-input>
+    </div>
+
+    <div>
+        <p>If you have any questions/suggestions about this task, feel free to leave a comment here. We appreciate your input to this task.</p>
+        <crowd-input name="comment-final"  placeholder="Comment..."></crowd-input>
+    </div>
+</crowd-form>
