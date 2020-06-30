@@ -1,4 +1,4 @@
-#Communication-based Evaluation for Natural Language Generation
+# Communication-based Evaluation for Natural Language Generation
 
 ## Project Description 
 Currently many NLG models are evaluated using n-gram overlap metrics like BLEU and ROUGE, but these metrics do not capture semantics let alone speaker intentions. People use language to communicate, and if we want NLG models to effectively communicate with people, we should evaluate them based on this property. We illustrate how this communication-based evaluation would work and compare it to traditional n-gram overlap scores using the color reference game scenario from Monroe et al., 2017. We collected color reference game captions of various qualities and investigated how well models that use the captions to play the reference game can distinguish between dffierent quality captions compared to n-gram overlap metrics.
